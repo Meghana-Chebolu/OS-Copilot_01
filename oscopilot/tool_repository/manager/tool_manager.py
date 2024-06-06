@@ -52,7 +52,7 @@ class ToolManager:
     def __init__(self, generated_tool_repo_dir=None):
         # generated_tools: Store the mapping relationship between descriptions and tools (associated through task names)
         self.generated_tools = {}
-        self.generated_tool_repo_dir = generated_tool_repo_dir
+        self.generated_tool_repo_dir = "/workspace/OS-Copilot/" + generated_tool_repo_dir
         
         with open(f"{self.generated_tool_repo_dir}/generated_tools.json") as f2:
             self.generated_tools = json.load(f2)
@@ -63,7 +63,7 @@ class ToolManager:
         os.makedirs(f"{generated_tool_repo_dir}/tool_code", exist_ok=True)
         os.makedirs(f"{generated_tool_repo_dir}/tool_description", exist_ok=True)
         # Utilize the Chroma database and employ OpenAI Embeddings for vectorization (default: text-embedding-ada-002)
-        
+        embedding_function = ""
         if EMBED_MODEL_TYPE == "OpenAI":
             embedding_function = OpenAIEmbeddings(
                 openai_api_key=OPENAI_API_KEY,
@@ -392,7 +392,10 @@ def add_tool(toolManager, tool_name, tool_path):
     with open(tool_path, 'r') as file:
         code = file.read()
     
+
     pattern = r'self\._description = "(.*?)"'
+    
+    print(code,pattern)
     match = re.search(pattern, code)
     if match:
         description = match.group(1)
@@ -406,6 +409,7 @@ def add_tool(toolManager, tool_name, tool_path):
         toolManager.add_new_tool(info)
         print(f"Successfully add the tool: {tool_name} with path: {tool_path}")
     else:
+        print("hi")
         print_error_and_exit("No description found")
 
 

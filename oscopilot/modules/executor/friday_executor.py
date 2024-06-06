@@ -435,7 +435,7 @@ class FridayExecutor(BaseModule):
         match = re.search(r'"""\s*\n\s*(.*?)[\.\n]', class_code)
         if match:
             first_sentence = match.group(1)
-            # print("First sentence of the comment:", first_sentence)
+            print("First sentence of the comment:", first_sentence)
         else:
             print("No description found.")
             raise NotImplementedError
