@@ -5,7 +5,8 @@ class FileTool:
     A tool for performing basic file operations such as listing files in a directory,
     reading a file, and writing to a file.
     """
-    
+    def __init__(self):
+        self._description="File tool"
     def list_files(self, directory):
         """
         Lists all files in the given directory.

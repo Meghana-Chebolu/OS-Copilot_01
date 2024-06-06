@@ -393,9 +393,9 @@ def add_tool(toolManager, tool_name, tool_path):
         code = file.read()
     
 
-    pattern = r'self\._description = "(.*?)"'
+    pattern = r'self\._description\s*=\s*"(.*?)"'
     
-    print(code,pattern)
+    # print(code,pattern)
     match = re.search(pattern, code)
     if match:
         description = match.group(1)
@@ -409,7 +409,7 @@ def add_tool(toolManager, tool_name, tool_path):
         toolManager.add_new_tool(info)
         print(f"Successfully add the tool: {tool_name} with path: {tool_path}")
     else:
-        print("hi")
+        # print("hi")
         print_error_and_exit("No description found")
 
 
