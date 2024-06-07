@@ -1,5 +1,5 @@
-from oscopilot.utils.utils import send_chat_prompts
-from oscopilot.prompts.friday_pt import prompt
+from ...utils.utils import send_chat_prompts
+from ...prompts.friday_pt import prompt
 
 
 class TextExtractor:

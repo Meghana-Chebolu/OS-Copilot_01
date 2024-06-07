@@ -1,16 +1,17 @@
 import os
 import dotenv
-
+import sys
 from fastapi import FastAPI
-from oscopilot.utils.server_config import ConfigManager
+sys.path.append(os.path.abspath('/workspace/OS-Copilot/oscopilot'))
+from utils.server_config import ConfigManager
 dotenv.load_dotenv(dotenv_path='.env', override=True)
 app = FastAPI()
 
 # Import your services
-from oscopilot.tool_repository.api_tools.bing.bing_service import router as bing_router
-from oscopilot.tool_repository.api_tools.audio2text.audio2text_service import router as audio2text_router
-from oscopilot.tool_repository.api_tools.image_caption.image_caption_service import router as image_caption_router
-from oscopilot.tool_repository.api_tools.wolfram_alpha.wolfram_alpha import router as wolfram_alpha_router
+from tool_repository.api_tools.bing.bing_service import router as bing_router
+from tool_repository.api_tools.audio2text.audio2text_service import router as audio2text_router
+from tool_repository.api_tools.image_caption.image_caption_service import router as image_caption_router
+from tool_repository.api_tools.wolfram_alpha.wolfram_alpha import router as wolfram_alpha_router
 
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
